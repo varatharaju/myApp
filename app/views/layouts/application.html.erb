@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+<%unless session[:user_token].blank?%>
+	<%= link_to "Log Out", controller: "users", action: "logout"%> 
+<%end%>
+<% if flash[:notice] %>
+  <div style="color:red;"><%= flash[:notice] %></div>
+<% end %>
+<%= yield %>
+</div>
+</body>
+</html>

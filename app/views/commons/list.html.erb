@@ -1,0 +1,20 @@
+<%= link_to "Create Person", controller: "commons", action: "new_person"%> 
+<%= link_to "Reports", controller: "commons", action: "reports"%>
+<table border=1>
+<tr>
+<td>User Name</td>
+<td>Name</td>
+<td>Age</td>
+<td>Matrial Status</td>
+<td>Gender</td>
+<tr>
+<% @person_list.parsed_response["results"].each do |person| %>
+	<tr>
+		<td><%= person["username"] %></td>		
+		<td><%= person["name"] %></td>
+		<td><%= person["age"]%></td>
+		<td><%= (person["is_married"] ? "Married" : "Single") %></td>
+		<td><%= (person["gender"] == "M" ? "Male" : (person["gender"] == "F" ? "Female" : "Other"))%></td>
+	</tr>
+<% end %>
+</table>

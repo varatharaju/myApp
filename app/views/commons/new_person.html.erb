@@ -1,0 +1,24 @@
+<%= link_to "Back", controller: "commons", action: "list"%> 
+<%= form_tag('create_person', authenticity_token: session[:user_token]) do -%>
+  <div class="form-group">
+    <label for="person_username">User Name</label>
+    <input class="form-control" id="person_username" name="person[username]" type="text">
+  </div>
+  <div class="form-group">
+    <label for="person_name">Name</label>
+    <input class="form-control" id="person_name" name="person[name]" type="text">
+  </div>
+  <div class="form-group">
+    <label for="person_age">Age</label>
+    <input class="form-control" id="person_age" name="person[age]" type="text">
+  </div>
+  <div class="form-group">
+    <label for="person_is_married">is married</label>
+    <%= check_box("person", "is_married")%>
+  </div>
+  <div class="form-group">
+    <label for="person_gender">Gender</label>
+    <%= select("person", "gender", [["Male","M"],["Female","F"],["Other","o"]])%>
+  </div>
+  <input class="btn btn-default" name="commit" type="submit" value="Create">
+<% end %>
