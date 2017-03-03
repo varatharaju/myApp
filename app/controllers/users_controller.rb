@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	API_BASE_URL = "http://fullstacktest.datawrkz.com/api/v1/auth/"    
-	skip_before_filter :verify_authenticity_token
+	API_BASE_URL = "http://fullstacktest.datawrkz.com/api/v1/auth/"  
+    skip_before_filter :verify_authenticity_token
 
 	def login
 
@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 				             }.to_json,
 				    :headers => { 'Content-Type' => 'application/json' } )
 		if @response.parsed_response.has_key?("status_code")
-			flash[:notice] = "Login Failed"
+			error = @response.parsed_response.collect{|key,value| (key + ":" + value[0]) if value.class == Array}
+			flash[:notice] = error.compact.join(",")
 			redirect_to({ action: 'login' })
 		else
 			session[:user_token] = @response.parsed_response["token"]
