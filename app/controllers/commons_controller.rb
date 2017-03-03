@@ -25,8 +25,8 @@ class CommonsController < ApplicationController
 		  :headers => headers
 		)
 		if @person.parsed_response.has_key?("status_code")
-			error = @person.parsed_response.collect{|k,v| v[0] if v.class == Array}
-			flash[:notice] = "Please enter all fields"
+			error = @person.parsed_response.collect{|k,v| (k + ":" + v[0]) if v.class == Array}
+			flash[:notice] = error.compact.join(",\n")
 			redirect_to({ action: 'new_person' })
 		else
 			flash[:notice] = "Person created successfully"

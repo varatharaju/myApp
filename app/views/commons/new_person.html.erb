@@ -1,5 +1,5 @@
 <%= link_to "Back", controller: "commons", action: "list"%> 
-<%= form_tag('create_person', authenticity_token: session[:user_token]) do -%>
+<%= form_tag('create_person', {}) do -%>
   <div class="form-group">
     <label for="person_username">User Name</label>
     <input class="form-control" id="person_username" name="person[username]" type="text">
