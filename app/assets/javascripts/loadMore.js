@@ -8,7 +8,9 @@ $(document).ready(function () {
 		        
 		        $("#page_no").val(page_no);
 		        data.data.forEach(function(report){
-		        	$("#report_data").append("<tr><td>"+report.date+"</td><td>"+report.position+"</td><td>"+report.size+"</td><td>"+report.bidder+"</td><td>"+report.event_type+"</td></tr>")
+		        	$("#report_data").append("<tr><td>"+report.date+"</td><td>"+report.position
+		        		+"</td><td>"+report.size+"</td><td>"+report.bidder+"</td><td>"+report.event_type
+		        		+"</td><td>"+report.num_records+"</td><td>"+report.cpm_sum+"</td></tr>")
 		        });
 		    }
 		});
