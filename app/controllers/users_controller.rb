@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	API_BASE_URL = "http://fullstacktest.datawrkz.com/api/v1/auth/"  
+	API_BASE_URL = "http://fullstacktest.datawrkz.com/api/v1/auth/"    
+	skip_before_filter :verify_authenticity_token
 
 	def login
 
