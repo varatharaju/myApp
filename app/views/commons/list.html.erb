@@ -9,7 +9,7 @@
 <td>Matrial Status</td>
 <td>Gender</td>
 <tr>
-<% @person_list.parsed_response["results"].each do |person| %>
+<% @person_list["results"].each do |person| %>
 	<tr>
 		<td><%= person["username"] %></td>		
 		<td><%= person["name"] %></td>

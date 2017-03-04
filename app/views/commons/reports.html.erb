@@ -11,7 +11,7 @@
 <td>cpm Sum</td>
 <tr>
 <tbody id="report_data">
-<% @reports.parsed_response["results"].each do |report| %>
+<% @reports["results"].each do |report| %>
 	<tr>
 		<td><%= report["date"] %></td>		
 		<td><%= report["position"] %></td>

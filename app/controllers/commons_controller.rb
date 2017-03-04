@@ -1,32 +1,15 @@
 class CommonsController < ApplicationController
 	def list
-			headers = { 
-			  "authorization" => session[:user_token],
-			  'Content-Type' => 'application/json'
-			}
-
-			@person_list = HTTParty.get(
-			  "http://fullstacktest.datawrkz.com/api/v1/person/",
-			  :headers => headers
-			) 
+		@person_list = Api::Http.api_get("person/","results",session[:user_token])
 	end
 
 	def new_person
 	end
 
 	def create_person
-		headers = { 
-		  "authorization" => session[:user_token],
-		  'Content-Type' => 'application/json'
-		}
-		@person = HTTParty.post(
-		  "http://fullstacktest.datawrkz.com/api/v1/person/",
-		  :body => params[:person].to_json,
-		  :headers => headers
-		)
-		if @person.parsed_response.has_key?("status_code")
-			error = @person.parsed_response.collect{|k,v| (k + ":" + v[0]) if v.class == Array}
-			flash[:notice] = error.compact.join(",\n")
+		@person = Api::Http.api_post("person/",params[:person],"results",session[:user_token])
+		if !@person["status"]
+			flash[:notice] = @person["error"]
 			redirect_to({ action: 'new_person' })
 		else
 			flash[:notice] = "Person created successfully"
@@ -35,32 +18,14 @@ class CommonsController < ApplicationController
 	end
 
 	def reports
-		url = "http://fullstacktest.datawrkz.com/api/v1/report/"
-		headers = { 
-			  "authorization" => session[:user_token],
-			  'Content-Type' => 'application/json'
-			}
-
-			@reports = HTTParty.get(
-			  "http://fullstacktest.datawrkz.com/api/v1/report/",
-			  :headers => headers
-			)
+		@reports = Api::Http.api_get("report/","results",session[:user_token])
 	end
 
 	def get_reports
-		url = "http://fullstacktest.datawrkz.com/api/v1/report/page="+ (params[:page_no].to_i + 1).to_s
-		headers = { 
-			  "authorization" => session[:user_token],
-			  'Content-Type' => 'application/json'
-			}
-
-		@reports = HTTParty.get(
-		  "http://fullstacktest.datawrkz.com/api/v1/report/",
-		  :headers => headers
-		)
+		@reports = Api::Http.api_get("report/?page="+ (params[:page_no].to_i + 1).to_s,"results",session[:user_token])
 		respond_to do |format|
-		     format.json { 
-		        render json: {:data => @reports.parsed_response["results"]}
+		     format.json {
+		        render json: {:status => @reports["status"], :error => @reports["error"] , :data => @reports["results"]}
 		     }
 		end
 	end
