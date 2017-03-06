@@ -1,28 +1,30 @@
 <%= link_to "Back", controller: "commons", action: "list"%> 
 <div class="table-responsive">
-<table class='table-bordered'>
-<tr>
-<td>Date</td>
-<td>Position</td>
-<td>Size</td>
-<td>Bidder</td>
-<td>Event Type</td>
-<td>No of Records</td>
-<td>cpm Sum</td>
-<tr>
-<tbody id="report_data">
-<% @reports["results"].each do |report| %>
-	<tr>
-		<td><%= report["date"] %></td>		
-		<td><%= report["position"] %></td>
-		<td><%= report["size"]%></td>
-		<td><%= report["bidder"]%></td>
-		<td><%= report["event_type"] %></td>
-		<td><%= report["num_records"] %></td>
-		<td><%= report["cpm_sum"] %></td>
-	</tr>
-<% end %>
-</tbody>
+<table class='table table-striped'>
+	<thead>	
+		<tr>
+			<th>Date</th>
+			<th>Position</th>
+			<th>Size</th>
+			<th>Bidder</th>
+			<th>Event Type</th>
+			<th>No of Records</th>
+			<th>cpm Sum</th>
+		<tr>
+	<thead>
+	<tbody id="report_data">
+	<% @reports["results"].each do |report| %>
+		<tr>
+			<td><%= report["date"] %></td>		
+			<td><%= report["position"] %></td>
+			<td><%= report["size"]%></td>
+			<td><%= report["bidder"]%></td>
+			<td><%= report["event_type"] %></td>
+			<td><%= report["num_records"] %></td>
+			<td><%= report["cpm_sum"] %></td>
+		</tr>
+	<% end %>
+	</tbody>
 </table>
 
 <input type="hidden" id="page_no" value="1"/>

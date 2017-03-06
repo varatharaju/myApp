@@ -1,14 +1,16 @@
 <%= link_to "Create Person", controller: "commons", action: "new_person"%> 
 <%= link_to "Reports", controller: "commons", action: "reports"%>
 <div class="table-responsive">
-<table class='table-bordered'>
+<table class='table table-striped'>
+<thead>
 <tr>
-<td>User Name</td>
-<td>Name</td>
-<td>Age</td>
-<td>Matrial Status</td>
-<td>Gender</td>
-<tr>
+<th>User Name</th>
+<th>Name</th>
+<th>Age</th>
+<th>Matrial Status</th>
+<th>Gender</th>
+<tr></thead>
+<tbody>
 <% @person_list["results"].each do |person| %>
 	<tr>
 		<td><%= person["username"] %></td>		
@@ -18,4 +20,6 @@
 		<td><%= (person["gender"] == "M" ? "Male" : (person["gender"] == "F" ? "Female" : "Other"))%></td>
 	</tr>
 <% end %>
+</tbody>
 </table>
+</div>

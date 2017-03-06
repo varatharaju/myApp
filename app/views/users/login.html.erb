@@ -1,11 +1,12 @@
-<form accept-charset="UTF-8" action="users/verify_login" class="new_user" id="new_user" method="post">
+<form accept-charset="UTF-8" action="users/verify_login" class="form-signin" id="new_user" method="post">
+<h2 class="form-signin-heading">Please login</h2>
   <div class="form-group">
     <label for="user_username">User Name</label>
-    <input class="form-control" id="user_username" name="user[username]" type="text">
+    <input class="form-control" id="user_username" name="user[username]" type="text" required>
   </div>
   <div class="form-group">
     <label for="user_password">Password</label>
-    <input class="form-control" id="user_password" name="user[password]" type="password">
+    <input class="form-control" id="user_password" name="user[password]" type="password" required>
   </div>
-  <input class="btn btn-default" name="commit" type="submit" value="Log In">
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 </form>

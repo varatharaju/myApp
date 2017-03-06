@@ -11,7 +11,9 @@
 <body>
 <div class="container">
 <%unless session[:user_token].blank?%>
+	<div style="float:right;">
 	<%= link_to "Log Out", controller: "users", action: "logout"%> 
+	</div>
 <%end%>
 
 <% if flash[:notice] %>

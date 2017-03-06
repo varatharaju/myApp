@@ -1,16 +1,17 @@
 <%= link_to "Back", controller: "commons", action: "list"%> 
-<%= form_tag('create_person', {}) do -%>
+<%= form_tag('create_person', {:class => "form-signin"}) do -%>
+  <h2 class="form-signin-heading">Person Detail</h2>
   <div class="form-group">
     <label for="person_username">User Name</label>
-    <input class="form-control" id="person_username" name="person[username]" type="text">
+    <input class="form-control" id="person_username" name="person[username]" type="text" required>
   </div>
   <div class="form-group">
     <label for="person_name">Name</label>
-    <input class="form-control" id="person_name" name="person[name]" type="text">
+    <input class="form-control" id="person_name" name="person[name]" type="text" required>
   </div>
   <div class="form-group">
     <label for="person_age">Age</label>
-    <input class="form-control" id="person_age" name="person[age]" type="text">
+    <input class="form-control" id="person_age" name="person[age]" type="text" required>
   </div>
   <div class="form-group">
     <label for="person_is_married">is married</label>
