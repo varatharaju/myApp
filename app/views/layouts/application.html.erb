@@ -11,9 +11,16 @@
 <body>
 <div class="container">
 <%unless session[:user_token].blank?%>
-	<div style="float:right;">
-	<%= link_to "Log Out", controller: "users", action: "logout"%> 
-	</div>
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+		<% if params[:action] == "list" %>
+		    <%= link_to "Create Person", {controller: "commons", action: "new_person"}, class: "navbar-brand"%> 
+			<%= link_to "Reports", {controller: "commons", action: "reports"}, class: "navbar-brand"%>
+		<% else %>
+			<%= link_to "Back", {controller: "commons", action: "list"}, class: "navbar-brand"%> 
+		<% end %>
+		<%= link_to "Log Out", {controller: "users", action: "logout"}, class: "navbar-brand div-right"%> 
+
+	</nav>
 <%end%>
 
 <% if flash[:notice] %>
